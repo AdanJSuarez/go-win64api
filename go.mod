@@ -1,6 +1,6 @@
-module github.com/iamacarpet/go-win64api
+module github.com/adanjsuarez/go-win64api
 
-go 1.13
+go 1.17
 
 require (
 	github.com/go-ole/go-ole v1.2.6

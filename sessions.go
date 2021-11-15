@@ -1,3 +1,4 @@
+//go:build windows && amd64
 // +build windows,amd64
 
 package winapi
@@ -12,7 +13,7 @@ import (
 	"time"
 	"unsafe"
 
-	so "github.com/iamacarpet/go-win64api/shared"
+	so "github.com/adanjsuarez/go-win64api/shared"
 )
 
 var (
@@ -88,12 +89,14 @@ func ListLoggedInUsers() ([]so.SessionDetails, error) {
 							if uok, isAdmin := luidinmap(&data.LogonId, &PidLUIDList); uok {
 								uList = append(uList, sUser)
 								ud := so.SessionDetails{
+									SessionID:     data.Session,
 									Username:      strings.ToLower(LsatoString(data.UserName)),
 									Domain:        strLogonDomain,
 									LocalAdmin:    isAdmin,
 									LogonType:     data.LogonType,
 									DnsDomainName: LsatoString(data.DnsDomainName),
 									LogonTime:     uint64TimestampToTime(data.LogonTime),
+									UPN:           LsatoString(data.Upn),
 								}
 								hn, _ := os.Hostname()
 								if strings.ToUpper(ud.Domain) == strings.ToUpper(hn) {

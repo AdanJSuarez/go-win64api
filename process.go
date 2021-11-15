@@ -8,7 +8,7 @@ import (
 	"syscall"
 	"unsafe"
 
-	so "github.com/iamacarpet/go-win64api/shared"
+	so "github.com/adanjsuarez/go-win64api/shared"
 )
 
 // Windows API functions

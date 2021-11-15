@@ -12,6 +12,7 @@ const (
 )
 
 type SessionDetails struct {
+	SessionID     uint32    `json:"sessionID"`
 	Username      string    `json:"username"`
 	Domain        string    `json:"domain"`
 	LocalUser     bool      `json:"isLocal"`
@@ -19,6 +20,7 @@ type SessionDetails struct {
 	LogonType     uint32    `json:"logonType"`
 	LogonTime     time.Time `json:"logonTime"`
 	DnsDomainName string    `json:"dnsDomainName"`
+	UPN           string    `json:"UPN"`
 }
 
 func (s *SessionDetails) FullUser() string {
